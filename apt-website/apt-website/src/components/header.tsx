@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Drawer from '@mui/material/Drawer';
@@ -7,54 +7,83 @@ import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import CloseIcon from '@mui/icons-material/Close';
 import Link from '@mui/material/Link';
-import Menu from '@mui/material/Menu';
+import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
-import Avatar from '@mui/material/Avatar';
+import Select from '@mui/material/Select';
+
+
+import { useTranslation } from 'react-i18next';
+
 
 
 function Header() {
     const [state, setState] = React.useState({
         sidebar: false
     });
+    const { t, i18n } = useTranslation();
+    const [language, setLanguage] = React.useState(i18n.language);
+    const [open, setOpen] = React.useState(false);
 
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const open = Boolean(anchorEl);
+
+    useEffect(() => {
+        const storedLanguage = localStorage.getItem('language');
+        if (storedLanguage) {
+          i18n.changeLanguage(storedLanguage);
+          setLanguage(storedLanguage);
+        }
+    }, []);
+
+    const onChangeLanguage = (e: any) => {
+        i18n.changeLanguage(e.target.value);
+        setLanguage(e.target.value);
+        localStorage.setItem('language', e.target.value);
+    };
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    }
 
 
     return (
         <React.Fragment>
-            <Toolbar sx={{p: "2vw"}}>
+            <Toolbar sx={{p: "2vw", backgroundColor: "yellow"}}>
                 <Box display="flex" flexGrow={1}>
                     <Typography>
-                        Riverside Homes
+                        {t("title")}
                     </Typography>
                 </Box>
-                <Link sx={{mr: "2vw"}}>
-                    Home
+                <Link href={"/"} sx={{mr: "2vw"}}>
+                    {t("home")}
                 </Link>
                 <Link sx={{mr: "2vw"}}>
-                    Apartments
+                    {t("apartments")}
                 </Link>
-                <Avatar 
-                    sx={{mr: "1vw", width: 30, height: 30}} 
-                    id="language-button"
-                    aria-controls={open ? 'language-menu' : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? "true" : undefined}
-                    onClick={(event) => setAnchorEl(event.currentTarget)}>
 
-                </Avatar>
-                <Menu 
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-                    transformOrigin={{ vertical: -10, horizontal: 'center' }}
-                    MenuListProps={{'aria-labelledby': 'language-button'}} 
-                    open={open}
-                    id="language-menu"
-                    anchorEl={anchorEl}
-                    onClose={() => setAnchorEl(null)}>
-                    <MenuItem onClick={() => setAnchorEl(null)}>LT</MenuItem>
-                    <MenuItem onClick={() => setAnchorEl(null)}>RUS</MenuItem>
-                </Menu>
+                <FormControl variant="standard" sx={{ m: 1, minWidth: 70, bgcolor: "transparent", color: "transparent", 
+              }}>
+                    <Select
+                        IconComponent={() => { return null; }}
+                        open={open}
+                        onMouseEnter={handleOpen}
+                        MenuProps={{PaperProps: {onMouseLeave: handleClose}}}
+                        value={language}
+                        onChange={onChangeLanguage}
+                        sx={{bgcolor: "transparent", textAlign: "right"}}>
+                        <MenuItem value="en">ENG</MenuItem>
+                        <MenuItem value="lt">LT</MenuItem>
+                    </Select>
+                </FormControl>
+                
+                
+
+
+
+
+                
                 <IconButton onClick={() => setState({sidebar: !state.sidebar})} size="large" disableRipple >
                     <DragHandleIcon fontSize="inherit" />
                 </IconButton>
