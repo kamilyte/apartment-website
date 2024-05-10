@@ -1,6 +1,19 @@
 {
-    "title": "Marvel Apartments",
+    "title": "MARVEL APARTATMENTAI",
     "home": "Titulinis",
     "apartments": "Apartamentai",
-    "lang": "LT"
+    "lang": "LT",
+    "contact": "Kontaktai",
+    "photos": "Galerija",
+    "services": "Paslaugos",
+    "homebook": "Namų Knyga",
+    "welcome": "Sveiki atvykę į Marvel Apartamentus",
+    "sidebar_reservations": "Rezervacijos Priimamos",
+    "time": "09:00 - 23:00",
+    "contact_number": "+370 661 99999",
+    "email": "email@gmail.com",
+    "address_line_1": "Marvelės G. 33A",
+    "address_line_2": "Kaunas",
+    "address_line_3": "Lietuva",
+    "email_title": "El. paštas"
 }
