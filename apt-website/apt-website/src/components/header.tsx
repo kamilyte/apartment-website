@@ -13,10 +13,16 @@ import Select from '@mui/material/Select';
 import Menu from '@mui/material/Menu';
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material';
+import Stack from '@mui/material/Stack';
+import GoogleMapReact from "google-map-react";
+import headerLogo from "../images/LOGO-cropped.jpeg"
+import CssBaseline from '@mui/material/CssBaseline';
+import ImageListItem from '@mui/material/ImageListItem';
 
 
 import { useTranslation } from 'react-i18next';
 
+const API_KEY = "AIzaSyBt14sZmtw0fTY3wW4bE1euB5L9IoZw9KQ";
 
 
 function Header() {
@@ -63,15 +69,16 @@ function Header() {
     };
 
 
+
+
     return (
         <React.Fragment>
-            <Toolbar sx={{p: "2vw", backgroundColor: "blue"}}>
-                <Box display="flex" flexGrow={1}>
-                    <Typography sx={{fontFamily: "Montserrat", color: "white", fontSize: "2.2rem", fontWeight: 300}}>
-                        {t("title")}
-                    </Typography>
+            <CssBaseline />
+            <Toolbar disableGutters sx={{backgroundColor: "pink"}}>
+                <Box display="flex" sx={{backgroundColor: "black", mr: "2vw"}}>
+                    <img src={headerLogo} style={{width:"25%", height:"100%"}}/>
                 </Box>
-                <Button href={"/"} sx={{mr: "2vw", fontFamily: "Montserrat", color: "white",}}>
+                <Button href={"/"} sx={{mr: "2vw", fontFamily: "Cinzel", color: "white", minWidth: "auto"}}>
                     {t("home")}
                 </Button>
                 
@@ -83,8 +90,9 @@ function Header() {
                     onMouseOver={onMouseEnterApartments}
                     sx={{
                         mr: "2vw", 
-                        fontFamily: "Montserrat", 
-                        color: "white"
+                        fontFamily: "Cenzel", 
+                        color: "white",
+                        minWidth: "auto"
                     }}
                     >
                     {t("apartments")}
@@ -104,16 +112,17 @@ function Header() {
                     }}
                     MenuListProps={{ onMouseLeave: onMouseLeaveApartments, sx: {bgcolor: "black", p: 0, textAlign: "center"}}}
                 >
-                    <MenuItem sx={{fontFamily: "Montserrat", color: "white"}}>{t("photos").toUpperCase()}</MenuItem>
-                    <MenuItem sx={{fontFamily: "Montserrat", color: "white"}}>{t("services").toUpperCase()}</MenuItem>
-                    <MenuItem sx={{fontFamily: "Montserrat", color: "white"}}>{t("homebook").toUpperCase()}</MenuItem>
+                    <MenuItem sx={{fontFamily: "Cenzel", color: "white"}}>{t("photos").toUpperCase()}</MenuItem>
+                    <MenuItem sx={{fontFamily: "Cenzel", color: "white"}}>{t("services").toUpperCase()}</MenuItem>
+                    <MenuItem sx={{fontFamily: "Cenzel", color: "white"}}>{t("homebook").toUpperCase()}</MenuItem>
                 </Menu>
 
                 <Button
                     sx={{
                         mr: "2vw",
-                        fontFamily: "Montserrat", 
-                        color: "white"
+                        fontFamily: "Cenzel", 
+                        color: "white", 
+                        minWidth: "auto"
                     }}
                 >
                     {t("contact")}
@@ -126,18 +135,18 @@ function Header() {
                         open={open}
                         onMouseEnter={handleOpen}
                         onMouseLeave={handleClose}
-                        MenuProps={{PaperProps: {onMouseLeave: handleClose, sx: {}}}}
+                        MenuProps={{PaperProps: {onMouseLeave: handleClose, sx: {bgcolor: "black", p: 0, textAlign: "center"}}}}
                         value={language}
                         onChange={onChangeLanguage}
                         sx={{bgcolor: "transparent", 
                             textAlign: "right",
-                            fontFamily: "Montserrat", 
+                            fontFamily: "Cenzel", 
                             color: "white",
                             ':before': { borderBottomColor: 'white' },
                             ':after': { borderBottomColor: 'white' },
                         }}>
-                        <MenuItem value="en">ENG</MenuItem>
-                        <MenuItem value="lt">LT</MenuItem>
+                        <MenuItem value="en" sx={{fontFamily: "Cenzel", color: "white"}}>ENG</MenuItem>
+                        <MenuItem value="lt" sx={{fontFamily: "Cenzel", color: "white"}}>LT</MenuItem>
                     </Select>
                 </FormControl>
                 
@@ -149,10 +158,125 @@ function Header() {
                     anchor={"right"}
                     open={state.sidebar}
                     onClose={(event, reason) => setState({ sidebar: false})}>
-                    <Box sx={{width: "30vw", p: "2vw" }} display="flex" justifyContent="flex-end">
-                        <IconButton onClick={() => setState({sidebar: false})}   size="large" disableRipple>
-                            <CloseIcon fontSize="inherit"/>
-                        </IconButton>
+                    <Box sx={{width: "30vw", p: "2vw", flexDirection: 'column', bgcolor: "black", height: "100vh"}} >
+                        <Stack spacing={1} sx={{}}>
+                            <Box
+                                sx={{
+                                    width: "inherit", 
+                                    height: "2vw",
+                                    marginLeft: "auto"
+                                }}>
+                                <IconButton onClick={() => setState({sidebar: false})} size="large" disableRipple sx={{position: "fixed", top: 0, right: 0, m: "1vw", color: "white"}}>
+                                    <CloseIcon fontSize="inherit" color="inherit"/>
+                                </IconButton>
+                            </Box>
+                            <Box
+                                sx={{
+                                    width: "inherit", 
+                                    height: "13vh",
+                                    bgcolor: "transparent"
+                                }}
+                                alignItems="center"
+                                justifyContent="center"
+                                display="flex">
+                                <Typography sx={{fontFamily: "Cenzel", color: "white", fontSize: "2.2rem", fontWeight: 300}} align="center">
+                                    {t("title")}
+                                </Typography>   
+                            </Box>
+                            <Box
+                                sx={{
+                                    width: "inherit", 
+                                    height: "4vh",
+                                    bgcolor: "transparent"
+                                }}
+                                alignItems="center"
+                                justifyContent="center"
+                                display="flex">
+                                <Typography sx={{fontFamily: "Cenzel", color: "white", fontSize: "1.2rem", fontWeight: 300}} align="center">
+                                    {t("sidebar_reservations").toUpperCase()}
+                                </Typography>   
+                            </Box>
+                            <Box
+                                sx={{
+                                    width: "inherit", 
+                                    height: "4vh",
+                                    bgcolor: "transparent"
+                                }}
+                                alignItems="center"
+                                justifyContent="center"
+                                display="flex">
+                                <Typography sx={{fontFamily: "Cenzel", color: "white", fontSize: "1.2rem", fontWeight: 300}} align="center">
+                                    {t("time")}
+                                </Typography>   
+                            </Box>
+                            <Box
+                                sx={{
+                                    width: "inherit", 
+                                    height: "4vh",
+                                    bgcolor: "transparent"
+                                }}
+                                alignItems="center"
+                                justifyContent="center"
+                                display="flex">
+                                <Typography sx={{fontFamily: "Cenzel", color: "white", fontSize: "1.2rem", fontWeight: 300}} align="center">
+                                    {t("contact_number")}
+                                </Typography>   
+                            </Box>
+                            <Box
+                                sx={{
+                                    width: "inherit", 
+                                    height: "4vh",
+                                    bgcolor: "transparent"
+                                }}
+                                alignItems="center"
+                                justifyContent="center"
+                                display="flex">
+                                <Typography sx={{fontFamily: "Cenzel", color: "white", fontSize: "1.1rem", fontWeight: 300}} align="center">
+                                    {t("email").toUpperCase()}
+                                </Typography>   
+                            </Box>
+                            <Box
+                                sx={{
+                                    width: "inherit", 
+                                    height: "6vw",
+                                    flexDirection: "column",
+                                    bgcolor: "transparent"
+                                }}
+                                alignItems="center"
+                                justifyContent="center"
+                                display="flex">
+                                <Typography sx={{fontFamily: "Cenzel", color: "white", fontSize: "1.1rem", fontWeight: 300}} align="center">
+                                    {t("address_line_1").toUpperCase()}
+                                </Typography>   
+                                <Typography sx={{fontFamily: "Cenzel", color: "white", fontSize: "1.1rem", fontWeight: 300}} align="center">
+                                    {t("address_line_2").toUpperCase()}
+                                </Typography>   
+                                <Typography sx={{fontFamily: "Cenzel", color: "white", fontSize: "1.1rem", fontWeight: 300}} align="center">
+                                    {t("address_line_3").toUpperCase()}
+                                </Typography>   
+                            </Box>
+                            <Box
+                                sx={{
+                                    width: "inherit", 
+                                    height: "43vh",
+                                    bgcolor: "transparent",
+                                    alignContent: 'flex-end'
+                                }}>
+                                <iframe
+                                    width="100%"
+                                    height="90%"
+                                    style={{"border":0}}
+                                    loading="lazy"
+                                    allowFullScreen
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBt14sZmtw0fTY3wW4bE1euB5L9IoZw9KQ&q=Marvelės+Gatvė+33A+Kaunas">
+                                </iframe>
+                            </Box>
+                            
+
+                        </Stack>
+                        
+                        
                     </Box>
                 </Drawer>
             </Toolbar>

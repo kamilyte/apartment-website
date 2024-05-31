@@ -8,6 +8,8 @@
     "services": "Paslaugos",
     "homebook": "Namų Knyga",
     "welcome": "Sveiki atvykę į Marvel Apartamentus",
+    "welcome_line1": "Sveiki atvykę",
+    "welcome_line2": "į Marvel Apartamentus",
     "sidebar_reservations": "Rezervacijos Priimamos",
     "time": "09:00 - 23:00",
     "contact_number": "+370 661 99999",
@@ -15,5 +17,18 @@
     "address_line_1": "Marvelės G. 33A",
     "address_line_2": "Kaunas",
     "address_line_3": "Lietuva",
-    "email_title": "El. paštas"
+    "email_title": "El. paštas",
+    "address": "Adresas",
+    "full_address": "Marvelės G. 33A, Kaunas, Lietuva",
+    "welcome_page2": "Jūsų laukia įspūdingas vaizdas į Nemuno ir Neries upių santaką",
+    "welcome_page3": "Modernūs, inovatyvūs ir erdvūs apartamentai",
+    "features": "Marvel Apartamentų Pagrindinės Savybės",
+    "space": "Erdvė",
+    "comfort": "Komfortas",
+    "convenience": "Patogumas",
+    "privacy": "Privatumas",
+    "space_text": "Apartamentuose yra daug erdvės, daugiau nei 150 kv. Prireikus gali apsistoti nuo 2-8 svečių. Yra didelė svetainė, pilnai įrengta virtuvė, 4 miegamosios zonos, 3 vonios kambariai, darbo kambarys ir dvi didelės terasos. Terasoje yra galimybė naudotis kepsinine, lauko baldais ir gultais. Privatus/uždaras kiemas, 3 vietos automobiliamas. Idealiai tinka verslo keliautojams kartu su didelėmis šeimomis, sporto komandoms bei draugų grupėms.",
+    "comfort_text": "Apartamentai pilnai įrengti, aprūpinti naujausia buitine technika su inovatyviomis funkcijomis, patogiomis didelėmis lovomis, veikiančia virtuve ir skalbyklos zona. Svečiai gali naudotis visais reikalingais moderniais, naujoviškais patogumais ir jaustis kaip namuose.",
+    "convenience_text": "Apartamentai Kauno miesto centre. Kauno senamiestis už 1 km (eiti 15 min.), Laisvės alėja - 2 km (eiti 30 min.), Žalgirio arena, Žalgirio baseinas - 2 km, Lampėdžių paplūdimys - 6 km, Kauno oro uostas - 17 km (20 min. automobiliu), dviračių trasos.",
+    "privacy_text": "Apartamentuose galėsite mėgautis aukštu privatumo lygiu. Užtikrinamas konfidencialumas."
 }

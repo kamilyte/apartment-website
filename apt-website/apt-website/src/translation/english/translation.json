@@ -8,6 +8,8 @@
     "services": "Services",
     "homebook": "Home Book",
     "welcome": "Welcome to Marvel Apartments",
+    "welcome_line1": "Welcome",
+    "welcome_line2": "to Marvel Apartments",
     "sidebar_reservations": "Reservations are accepted",
     "time": "09:00 - 23:00",
     "contact_number": "+370 661 99999",
@@ -15,5 +17,18 @@
     "address_line_1": "Marvelės G. 33A",
     "address_line_2": "Kaunas",
     "address_line_3": "Lithuania",
-    "email_title": "E-mail"
+    "email_title": "E-mail",
+    "address": "Address",
+    "full_address": "Marvelės G. 33A, Kaunas, Lithuania",
+    "welcome_page2": "An impressive view of the Nemunas and Neris conflusion awaits you",
+    "welcome_page3": "Modern, innovative and spacious apartments",
+    "features": "Marvel Apartments Main Features",
+    "space": "Space",
+    "comfort": "Comfort",
+    "convenience": "Convenience",
+    "privacy": "Privacy",
+    "space_text": "The apartments have a lot of space, more than 150 sq. If necessary, 2-8 guests can stay. There is a large living room, a fully equipped kitchen, 4 sleeping areas, 3 bathrooms, a study and two large terraces. The terrace has the possibility to use a barbecue, outdoor furniture and deckchairs. Private/enclosed yard, 3 parking spaces. Ideal for business travelers with large families, sports teams and groups of friends.",
+    "comfort_text": "The apartments are fully furnished, equipped with the latest appliances with innovative features, comfortable large beds, a working kitchen and a laundry area. Guests can use all the necessary modern, innovative amenities and feel at home.",
+    "convenience_text": "Apartments in the center of Kaunas city. Old town of Kaunas 1 km (15 min walk), Laisves al. - 2 km (30 min walk), Zalgiris Arena, Zalgiris swimming pool - 2 km, Lampedziai beach - 6 km, Kaunas airport - 17 km (20 min by car), bicycle tracks.",
+    "privacy_text": "You can enjoy a high level of privacy in the serviced apartments. Confidentiality is ensured."
 }
