@@ -130,7 +130,7 @@ function MainPage() {
                             </Box>
                         </Stack>
                     </Grid>
-                    <Grid item xs={7} sx={{height: "inherit", display: "flex", alignItems: "center", justifyContent: 'center',}}>
+                    <Grid item xs={7} sx={{height: "inherit", display: "flex", alignItems: "center", justifyContent: 'center'}}>
                         <Box sx={{bgcolor: "blue", height: "60%", width: "70%"}}>
                         </Box>
                     </Grid>

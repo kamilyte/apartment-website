@@ -74,8 +74,8 @@ function Header() {
     return (
         <React.Fragment>
             <CssBaseline />
-            <Toolbar disableGutters sx={{backgroundColor: "pink"}}>
-                <Box display="flex" sx={{backgroundColor: "black", mr: "2vw"}}>
+            <Toolbar disableGutters sx={{backgroundColor: "transparent"}}>
+                <Box display="flex" sx={{backgroundColor: "transparent", mr: "2vw"}}>
                     <img src={headerLogo} style={{width:"25%", height:"100%"}}/>
                 </Box>
                 <Button href={"/"} sx={{mr: "2vw", fontFamily: "Cinzel", color: "white", minWidth: "auto"}}>
@@ -113,7 +113,7 @@ function Header() {
                     MenuListProps={{ onMouseLeave: onMouseLeaveApartments, sx: {bgcolor: "black", p: 0, textAlign: "center"}}}
                 >
                     <MenuItem sx={{fontFamily: "Cenzel", color: "white"}}>{t("photos").toUpperCase()}</MenuItem>
-                    <MenuItem sx={{fontFamily: "Cenzel", color: "white"}}>{t("services").toUpperCase()}</MenuItem>
+                    <MenuItem sx={{fontFamily: "Cenzel", color: "white"}}><Link href="/services" sx={{ textDecoration: 'none', color: "inherit"}}>{t("services").toUpperCase()}</Link>  </MenuItem>
                     <MenuItem sx={{fontFamily: "Cenzel", color: "white"}}>{t("homebook").toUpperCase()}</MenuItem>
                 </Menu>
 
