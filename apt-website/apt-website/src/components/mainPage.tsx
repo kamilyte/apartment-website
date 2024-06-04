@@ -49,80 +49,87 @@ function MainPage() {
     return (
         <React.Fragment>
             <CssBaseline />
+            <Container disableGutters maxWidth={false}>
+
+
             <Container disableGutters={true} maxWidth={false} sx={{backgroundColor:`transparent`, height: "100vh", backgroundImage: background, transition: "background-image 1s ease",
                 backgroundSize: "cover"}}>
                 <Container maxWidth={false} sx={{width: "100%", height: "100%", backgroundColor: "rgba(0, 0, 0, 0.55)"}}>
                 <Header/>
-                <Fade in={checked} timeout={{enter: 1000, exit: 500}}>
-                <Box sx={{backgroundColor: "transparent", ml: "10vw", mt: "20vh", width: "50%", height: "30vw", alignContent: 'flex-end', transition: "opacity 1s ease-in-out"}}>
-                    <Typography sx={{fontFamily: "Cenzel", color: "white", fontSize: "6rem", fontWeight: 100}}>
-                        {backgroundText_1}
+                <Fade in={checked} timeout={{enter: 500, exit: 500}}>
+                <Box sx={{ml: "8%", mt: "25%", width: "60%", height: "30%", alignContent: 'flex-end', transition: "opacity 1s ease-in-out"}}>
+                    <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "6rem", fontWeight: 100}}>
+                        {imageTexts1[imageIdxRef.current]}
                     </Typography>
-                    <Typography sx={{fontFamily: "Cenzel", color: "white", fontSize: "3rem", fontWeight: 300, transition: "opacity 1s ease-in-out"}}>
-                        {backgroundText_2}
+                    <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "3rem", fontWeight: 300, transition: "opacity 1s ease-in-out"}}>
+                        {imageTexts2[imageIdxRef.current]}
                     </Typography>
                 </Box>
                 </Fade>
                 </Container>
             </Container>
-            <Container maxWidth={false} sx={{backgroundColor: "white", height: "130vh"}}>
-                <Grid container spacing={0} sx={{height: "inherit"}}>
-                    <Grid item xs={5} sx={{height: "inherit"}}>
-                        <Stack spacing={2} sx={{height: "inherit", display: "flex", justifyContent: "space-around"}}>
-                            <Box sx={{fontFamily: "Cenzel", color: "black", fontSize: "1.7rem", fontWeight: 200, display: "flex", justifyContent: 'center', textTransform: 'uppercase'}}>
-                                {t("features")}
-                            </Box>
-                            <Box>
+            <Container maxWidth={false} sx={{backgroundColor: "#DFDFDF", height: "130vh", width: "100%"}}>
+                <Grid container spacing={0} sx={{height: "inherit", width: "inherit"}}>
+                    <Grid item xs={12}>
+                        <Box sx={{fontFamily: "Cormorant Garamond", color: "#15616D", fontSize: "3.5rem", fontWeight: 200, textTransform: "uppercase", mt: 10,  display: "flex", alignItems: "center", justifyContent: 'center'}}>
+                            {t("features")}
+                        </Box>
+                    </Grid>
+                    <Grid item xs={6} sx={{height: "inherit", width: "100%"}}>
+                        <Stack spacing={0} sx={{height: "inherit", display: "flex", justifyContent: "flex-start", mt: 5}}>
+                            <Box sx={{pt: 4, pb: 4, pr: 2, borderTop: 2, borderBottom: 2, borderColor: "#15616D"}}>
                                 <Grid container spacing={2}>
                                     <Grid item xs={4}>
-                                        <Typography sx={{pl: 2, fontFamily: "Cenzel", color: "black", fontSize: "1.5rem", fontWeight: 100, textTransform: 'uppercase'}}>
+                                        <Box>
+                                        <Typography sx={{pl: 2, fontFamily: "Cormorant Garamond", color: "black", fontSize: "1.5rem", fontWeight: 400, textTransform: 'uppercase'}}>
                                             {t("space")}:
                                         </Typography>
+                                        </Box>
                                     </Grid>
                                     <Grid item xs={8}>
-                                        <Typography sx={{pl: 2, fontFamily: "Cenzel", color: "black", fontSize: "1rem", fontWeight: 100}}>
+                                        <Typography sx={{pl: 2, fontFamily: "Cormorant Garamond", color: "black", fontSize: "1rem", fontWeight: 400}}>
                                             {t("space_text")}
                                         </Typography>
                                     </Grid>
                                 </Grid>
                             </Box>
-                            <Box>
+                            <Box sx={{pt: 4, pb: 4, pr: 2, borderBottom: 2, borderColor: "#15616D"}}>
                                 <Grid container spacing={2}>
                                     <Grid item xs={4}>
-                                        <Typography sx={{pl: 2, fontFamily: "Cenzel", color: "black", fontSize: "1.5rem", fontWeight: 100, textTransform: 'uppercase'}}>
+                                        <Typography sx={{pl: 2, fontFamily: "Cormorant Garamond", color: "black", fontSize: "1.5rem", fontWeight: 400, textTransform: 'uppercase'}}>
                                             {t("comfort")}:
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={8}>
-                                        <Typography sx={{pl: 2, fontFamily: "Cenzel", color: "black", fontSize: "1rem", fontWeight: 100}}>
+                                        <Typography sx={{pl: 2, fontFamily: "Cormorant Garamond", color: "black", fontSize: "1rem", fontWeight: 400}}>
                                             {t("comfort_text")}
                                         </Typography>
                                     </Grid>
                                 </Grid>
                             </Box>
-                            <Box>
+                            <Box sx={{pt: 4, pb: 4, pr: 2, borderBottom: 2, borderColor: "#15616D"}}> 
                                 <Grid container spacing={2}>
                                     <Grid item xs={4}>
-                                        <Typography sx={{pl: 2, fontFamily: "Cenzel", color: "black", fontSize: "1.5rem", fontWeight: 100, textTransform: 'uppercase'}}>
+                                        <Typography sx={{pl: 2, fontFamily: "Cormorant Garamond", color: "black", fontSize: "1.5rem", fontWeight: 400, textTransform: 'uppercase'}}>
                                             {t("convenience")}:
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={8}>
-                                        <Typography sx={{pl: 2, fontFamily: "Cenzel", color: "black", fontSize: "1rem", fontWeight: 100}}>
+                                        <Typography sx={{pl: 2, fontFamily: "Cormorant Garamond", color: "black", fontSize: "1rem", fontWeight: 400}}>
                                             {t("convenience_text")}
                                         </Typography>
                                     </Grid>
                                 </Grid>
                             </Box>
-                            <Box>
+                            <Box sx={{pt: 5, pb: 4, pr: 2, borderBottom: 2, borderColor: "#15616D"}}>
                                 <Grid container spacing={2}>
                                     <Grid item xs={4}>
-                                        <Typography sx={{pl: 2, fontFamily: "Cenzel", color: "black", fontSize: "1.5rem", fontWeight: 100, textTransform: 'uppercase'}}>
+                                        <Typography sx={{pl: 2, fontFamily: "Cormorant Garamond", color: "black", fontSize: "1.5rem", fontWeight: 400, textTransform: 'uppercase'}}>
                                             {t("privacy")}:
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={8}>
-                                        <Typography sx={{pl: 2, pb: 2, fontFamily: "Cenzel", color: "black", fontSize: "1rem", fontWeight: 100}}>
+                                        <Typography sx={{pl: 2, pb: 2, fontFamily: "Cormorant Garamond", color: "black", fontSize: "1rem", fontWeight: 400}}>
                                             {t("privacy_text")}
                                         </Typography>
                                     </Grid>
@@ -130,14 +137,15 @@ function MainPage() {
                             </Box>
                         </Stack>
                     </Grid>
-                    <Grid item xs={7} sx={{height: "inherit", display: "flex", alignItems: "center", justifyContent: 'center'}}>
-                        <Box sx={{bgcolor: "blue", height: "60%", width: "70%"}}>
+                    <Grid item xs={6} sx={{height: "inherit", display: "flex"}}>
+                        <Box sx={{bgcolor: "blue", height: "60%", width: "70%", ml: 15, mt: 13}}>
                         </Box>
                     </Grid>
 
                 </Grid>
             </Container>
             <Footer/>
+            </Container>
             
         </React.Fragment>
     );

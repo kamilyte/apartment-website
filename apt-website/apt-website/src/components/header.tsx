@@ -20,6 +20,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import ImageListItem from '@mui/material/ImageListItem';
 
 
+
 import { useTranslation } from 'react-i18next';
 
 const API_KEY = "AIzaSyBt14sZmtw0fTY3wW4bE1euB5L9IoZw9KQ";
@@ -78,7 +79,7 @@ function Header() {
                 <Box display="flex" sx={{backgroundColor: "transparent", mr: "2vw"}}>
                     <img src={headerLogo} style={{width:"25%", height:"100%"}}/>
                 </Box>
-                <Button href={"/"} sx={{mr: "2vw", fontFamily: "Cinzel", color: "white", minWidth: "auto"}}>
+                <Button href={"/"} sx={{mr: "2vw", fontFamily: "Cormorant Garamond", color: "white", minWidth: "auto", fontWeight: 600}}>
                     {t("home")}
                 </Button>
                 
@@ -90,9 +91,10 @@ function Header() {
                     onMouseOver={onMouseEnterApartments}
                     sx={{
                         mr: "2vw", 
-                        fontFamily: "Cenzel", 
+                        fontFamily: "Cormorant Garamond", 
                         color: "white",
-                        minWidth: "auto"
+                        minWidth: "auto",
+                        fontWeight: 600
                     }}
                     >
                     {t("apartments")}
@@ -110,19 +112,21 @@ function Header() {
                         vertical: 'top',
                         horizontal: 'center',
                     }}
-                    MenuListProps={{ onMouseLeave: onMouseLeaveApartments, sx: {bgcolor: "black", p: 0, textAlign: "center"}}}
+                    MenuListProps={{ onMouseLeave: onMouseLeaveApartments, sx: {bgcolor: "#001524", p: 0, textAlign: "center"}}}
                 >
-                    <MenuItem sx={{fontFamily: "Cenzel", color: "white"}}>{t("photos").toUpperCase()}</MenuItem>
-                    <MenuItem sx={{fontFamily: "Cenzel", color: "white"}}><Link href="/services" sx={{ textDecoration: 'none', color: "inherit"}}>{t("services").toUpperCase()}</Link>  </MenuItem>
-                    <MenuItem sx={{fontFamily: "Cenzel", color: "white"}}>{t("homebook").toUpperCase()}</MenuItem>
+                    <MenuItem sx={{fontFamily: "Cormorant Garamond", color: "white", fontWeight: 600}}><Link href="/photos" sx={{ textDecoration: 'none', color: "inherit"}}>{t("photos").toUpperCase()}</Link></MenuItem>
+                    <MenuItem sx={{fontFamily: "Cormorant Garamond", color: "white", fontWeight: 600}}><Link href="/services" sx={{ textDecoration: 'none', color: "inherit"}}>{t("services").toUpperCase()}</Link>  </MenuItem>
+                    <MenuItem sx={{fontFamily: "Cormorant Garamond", color: "white", fontWeight: 600}}>{t("homebook").toUpperCase()}</MenuItem>
                 </Menu>
 
                 <Button
+                    onClick={() => setState({sidebar: !state.sidebar})}
                     sx={{
                         mr: "2vw",
-                        fontFamily: "Cenzel", 
+                        fontFamily: "Cormorant Garamond", 
                         color: "white", 
-                        minWidth: "auto"
+                        minWidth: "auto", 
+                        fontWeight: 600
                     }}
                 >
                     {t("contact")}
@@ -135,18 +139,19 @@ function Header() {
                         open={open}
                         onMouseEnter={handleOpen}
                         onMouseLeave={handleClose}
-                        MenuProps={{PaperProps: {onMouseLeave: handleClose, sx: {bgcolor: "black", p: 0, textAlign: "center"}}}}
+                        MenuProps={{PaperProps: {onMouseLeave: handleClose, sx: {bgcolor: "#001524", p: 0, textAlign: "center"}}}}
                         value={language}
                         onChange={onChangeLanguage}
                         sx={{bgcolor: "transparent", 
                             textAlign: "right",
-                            fontFamily: "Cenzel", 
+                            fontFamily: "Cormorant Garamond", 
                             color: "white",
                             ':before': { borderBottomColor: 'white' },
                             ':after': { borderBottomColor: 'white' },
+                            fontWeight: 600
                         }}>
-                        <MenuItem value="en" sx={{fontFamily: "Cenzel", color: "white"}}>ENG</MenuItem>
-                        <MenuItem value="lt" sx={{fontFamily: "Cenzel", color: "white"}}>LT</MenuItem>
+                        <MenuItem value="en" sx={{fontFamily: "Cormorant Garamond", color: "white", fontWeight: 600}}>ENG</MenuItem>
+                        <MenuItem value="lt" sx={{fontFamily: "Cormorant Garamond", color: "white", fontWeight: 600}}>LT</MenuItem>
                     </Select>
                 </FormControl>
                 
@@ -158,7 +163,7 @@ function Header() {
                     anchor={"right"}
                     open={state.sidebar}
                     onClose={(event, reason) => setState({ sidebar: false})}>
-                    <Box sx={{width: "30vw", p: "2vw", flexDirection: 'column', bgcolor: "black", height: "100vh"}} >
+                    <Box sx={{width: "30vw", p: "2vw", flexDirection: 'column', bgcolor: "#001524", height: "100vh"}}>
                         <Stack spacing={1} sx={{}}>
                             <Box
                                 sx={{
@@ -179,7 +184,7 @@ function Header() {
                                 alignItems="center"
                                 justifyContent="center"
                                 display="flex">
-                                <Typography sx={{fontFamily: "Cenzel", color: "white", fontSize: "2.2rem", fontWeight: 300}} align="center">
+                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "2.2rem", fontWeight: 300}} align="center">
                                     {t("title")}
                                 </Typography>   
                             </Box>
@@ -192,7 +197,7 @@ function Header() {
                                 alignItems="center"
                                 justifyContent="center"
                                 display="flex">
-                                <Typography sx={{fontFamily: "Cenzel", color: "white", fontSize: "1.2rem", fontWeight: 300}} align="center">
+                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 300}} align="center">
                                     {t("sidebar_reservations").toUpperCase()}
                                 </Typography>   
                             </Box>
@@ -205,7 +210,7 @@ function Header() {
                                 alignItems="center"
                                 justifyContent="center"
                                 display="flex">
-                                <Typography sx={{fontFamily: "Cenzel", color: "white", fontSize: "1.2rem", fontWeight: 300}} align="center">
+                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 300}} align="center">
                                     {t("time")}
                                 </Typography>   
                             </Box>
@@ -218,7 +223,7 @@ function Header() {
                                 alignItems="center"
                                 justifyContent="center"
                                 display="flex">
-                                <Typography sx={{fontFamily: "Cenzel", color: "white", fontSize: "1.2rem", fontWeight: 300}} align="center">
+                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 300}} align="center">
                                     {t("contact_number")}
                                 </Typography>   
                             </Box>
@@ -231,7 +236,7 @@ function Header() {
                                 alignItems="center"
                                 justifyContent="center"
                                 display="flex">
-                                <Typography sx={{fontFamily: "Cenzel", color: "white", fontSize: "1.1rem", fontWeight: 300}} align="center">
+                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.1rem", fontWeight: 300}} align="center">
                                     {t("email").toUpperCase()}
                                 </Typography>   
                             </Box>
@@ -245,13 +250,13 @@ function Header() {
                                 alignItems="center"
                                 justifyContent="center"
                                 display="flex">
-                                <Typography sx={{fontFamily: "Cenzel", color: "white", fontSize: "1.1rem", fontWeight: 300}} align="center">
+                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.1rem", fontWeight: 300}} align="center">
                                     {t("address_line_1").toUpperCase()}
                                 </Typography>   
-                                <Typography sx={{fontFamily: "Cenzel", color: "white", fontSize: "1.1rem", fontWeight: 300}} align="center">
+                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.1rem", fontWeight: 300}} align="center">
                                     {t("address_line_2").toUpperCase()}
                                 </Typography>   
-                                <Typography sx={{fontFamily: "Cenzel", color: "white", fontSize: "1.1rem", fontWeight: 300}} align="center">
+                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.1rem", fontWeight: 300}} align="center">
                                     {t("address_line_3").toUpperCase()}
                                 </Typography>   
                             </Box>

@@ -8,9 +8,12 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Container from '@mui/material/Container';
 import { useState, useEffect } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
+import PhotosPage from './components/photosPage';
 
 function App() {
   const { innerWidth: width, innerHeight: height } = window;
+  // const [width] = useState(window.screen.width);
+  // const [height] = useState(window.screen.height);
   //const { width: width, height: height } = window.screen
   return (
     <div>
@@ -20,6 +23,7 @@ function App() {
         <Routes>
           <Route path="/" Component={MainPage} />
           <Route path="/services" Component={ServicesPage} />
+          <Route path="/photos" Component={PhotosPage} />
         </Routes>
         
       </Router>

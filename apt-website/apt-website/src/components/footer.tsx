@@ -28,20 +28,20 @@ function Footer() {
 
     return (
         <React.Fragment>
-        <Toolbar disableGutters sx={{ bgcolor: "black", height: "60vh"}}>
+        <Toolbar disableGutters sx={{ bgcolor: "#001524", height: "60vh"}}>
             <Grid container spacing={2} alignItems="flex-end" sx={{height: "inherit"}}>
                 <Grid item xs={6}>
                     <Box sx={{p: 2}}>
-                    <Box sx={{fontFamily: "Cenzel", color: "white", fontSize: "1.5rem", fontWeight: 100, pt: 1, pb: 1}}>
+                    <Box sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.5rem", fontWeight: 600, pt: 1, pb: 1}}>
                         {t("contact").toUpperCase()}
                     </Box>
-                    <Box sx={{fontFamily: "Cenzel", color: "white", fontSize: "1.1rem", fontWeight: 100}}>
+                    <Box sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.1rem", fontWeight: 400}}>
                         {t("email_title").toUpperCase()}: {t("email").toUpperCase()}
                     </Box>
-                    <Box sx={{fontFamily: "Cenzel", color: "white", fontSize: "1.1rem", fontWeight: 100}}>
+                    <Box sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.1rem", fontWeight: 400}}>
                         TEL: {t("contact_number").toUpperCase()}
                     </Box>
-                    <Box sx={{fontFamily: "Cenzel", color: "white", fontSize: "1.1rem", fontWeight: 100}}>
+                    <Box sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.1rem", fontWeight: 400}}>
                         {t("address").toUpperCase()}: {t("full_address").toUpperCase()}
                     </Box>
                     </Box>
@@ -62,7 +62,7 @@ function Footer() {
                     </Box>
                 </Grid>
                 <Grid item xs={12}>
-                    <Box sx={{p: 2, display: "flex", justifyContent: "center", fontFamily: "Cenzel", color: "white", fontSize: "1rem", fontWeight: 100}}>
+                    <Box sx={{p: 2, display: "flex", justifyContent: "center", fontFamily: "Cormorant Garamond", color: "white", fontSize: "1rem", fontWeight: 100}}>
                         {t("title")} 2024
                     </Box>
                 </Grid>
