@@ -76,7 +76,7 @@ function Header() {
         <React.Fragment>
             <CssBaseline />
             <Toolbar disableGutters sx={{backgroundColor: "transparent"}}>
-                <Box display="flex" sx={{backgroundColor: "transparent", mr: "2vw"}}>
+                <Box display="flex" sx={{backgroundColor: "transparent", mr: "2px"}}>
                     <img src={headerLogo} style={{width:"25%", height:"100%"}}/>
                 </Box>
                 <Button href={"/"} sx={{mr: "2vw", fontFamily: "Cormorant Garamond", color: "white", minWidth: "auto", fontWeight: 600}}>
