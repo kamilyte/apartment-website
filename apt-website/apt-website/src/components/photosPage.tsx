@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Drawer from '@mui/material/Drawer';
@@ -22,81 +22,255 @@ import ImageListItem from '@mui/material/ImageListItem';
 import Container from '@mui/material/Container';
 import Header from './header';
 import Footer from './footer';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import Modal from '@mui/material/Modal';
+import Grid from '@mui/material/Grid';
+import { useTranslation } from 'react-i18next';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { styled } from "@mui/material/styles";
+import Slide from '@mui/material/Slide';
+import SwipeableViews from 'react-swipeable-views';
+import { autoPlay } from 'react-swipeable-views-utils';
+import MobileStepper from '@mui/material/MobileStepper';
+import Paper from '@mui/material/Paper';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 
-const itemData = [
+const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+
+const images = [
     {
-      img: 'https://images.unsplash.com/photo-1549388604-817d15aa0110',
-      title: 'Bed',
+      label: 'San Francisco – Oakland Bay Bridge, United States',
+      imgPath:
+        'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
     },
     {
-      img: 'https://images.unsplash.com/photo-1525097487452-6278ff080c31',
-      title: 'Books',
+      label: 'Bird',
+      imgPath:
+        'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
     },
     {
-      img: 'https://images.unsplash.com/photo-1523413651479-597eb2da0ad6',
-      title: 'Sink',
+      label: 'Bali, Indonesia',
+      imgPath:
+        'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250',
     },
     {
-      img: 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3',
-      title: 'Kitchen',
+      label: 'Goč, Serbia',
+      imgPath:
+        'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
+    },
+  ];
+
+  const itemData = [
+    {
+      img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
+      title: 'Breakfast',
     },
     {
-      img: 'https://images.unsplash.com/photo-1588436706487-9d55d73a39e3',
-      title: 'Blinds',
+      img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
+      title: 'Burger',
     },
     {
-      img: 'https://images.unsplash.com/photo-1574180045827-681f8a1a9622',
-      title: 'Chairs',
+      img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
+      title: 'Camera',
     },
     {
-      img: 'https://images.unsplash.com/photo-1530731141654-5993c3016c77',
-      title: 'Laptop',
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1481277542470-605612bd2d61',
-      title: 'Doors',
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1517487881594-2787fef5ebf7',
+      img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
       title: 'Coffee',
     },
     {
-      img: 'https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee',
-      title: 'Storage',
+      img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
+      title: 'Hats',
     },
     {
-      img: 'https://images.unsplash.com/photo-1597262975002-c5c3b14bbd62',
-      title: 'Candle',
+      img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
+      title: 'Honey',
     },
     {
-      img: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4',
-      title: 'Coffee table',
+      img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
+      title: 'Basketball',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
+      title: 'Fern',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
+      title: 'Mushrooms',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
+      title: 'Tomato basil',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
+      title: 'Sea star',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
+      title: 'Bike',
     },
   ];
 
 
+const PictureBox = styled(Box)(({ theme }) => ({
+    background: "blue", 
+    height: "450px", 
+    width: "400px",
+    [theme.breakpoints.down("md")]: {
+        height: "400px",
+        width: "300px",
+    },
+}));
+
+const PictureBoxSmall = styled(Box)(({ theme }) => ({
+  background: "blue", 
+  height: "400px", 
+  width: "300px",
+  [theme.breakpoints.down("md")]: {
+  },
+}));
+
+
+
 function PhotosPage() {
+    const theme = useTheme();
+    const isSmDown = useMediaQuery(theme.breakpoints.down('md'));
+    const { t, i18n } = useTranslation();
+    const imageIdxRef = useRef<number>(0);
+    const imageIdxRef2 = useRef<number>(1);
+    const [slideDirection, setSlideDirection] = useState('translateX(0)');
+    const [inTransition, setInTransition] = useState(false);
+    const [activeStep, setActiveStep] = React.useState(0);
+  const maxSteps = images.length;
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => (prevActiveStep + 1) % (maxSteps));
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => {
+      if (prevActiveStep === 0) {
+        return maxSteps - 1;
+      } else {
+        return prevActiveStep - 1
+      }
+      
+    });
+  };
+
+  const handleStepChange = (step: number) => {
+    setActiveStep(step);
+  };
+
+
+  const [checked, setChecked] = useState(false);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    console.log("works")
+    setOpen(true)
+  };
+  const handleClose = () => setOpen(false);
+
+
+
+
+    
+  const handleLeftClick = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current as NodeJS.Timeout); // Cast to NodeJS.Timeout
+      intervalRef.current = null; // Reset the interval ref
+    }
+  };
+
+
+
+
+
+
+    const headerFontSize = isSmDown ? "3rem" : "4rem";
+    const photoWidth = isSmDown ? "400px" : "600px";
+    const photoHeight = isSmDown ? "500px" : "700px";
+    const carouselHeight = isSmDown ? "300px" : "400px";
+    const carouselWidth = isSmDown ? "270px" : "500px";
+    const boxHeight = isSmDown ? "400px" : "500px";
+    const boxWidth = isSmDown ? "400px" : "600px";
+    const modalHeight = isSmDown ? "400px" : "900px";
+    const modalWidth = isSmDown ? "400px" : "1000px";
+    const modalImageHeight = isSmDown ? "300px" : "700px";
+    const modalImageWidth = isSmDown ? "270px" : "900px";
+    const numCols = isSmDown ? 2 : 4;
     return (
-        <React.Fragment>
-        <CssBaseline/>
-        <Container disableGutters maxWidth={false} sx={{backgroundColor:`#DFDFDF`, height: "300vh", pr: 2}}>
-            <Header/>
-            <ImageList variant="masonry" cols={3} gap={8}>
-                {itemData.map((item) => (
-                <ImageListItem key={item.img}>
-                    <img
-                    srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                    src={`${item.img}?w=248&fit=crop&auto=format`}
-                    alt={item.title}
-                    loading="lazy"
-                    />
-                </ImageListItem>
-                ))}
-            </ImageList>
+        <Container disableGutters maxWidth={false} sx={{minHeight: "auto", bgcolor: "grey", maxWidth: "100%"}}>
+          <Container disableGutters maxWidth={false} sx={{width: "inherit", backgroundColor:`#DFDFDF`, minHeight: "auto", display: "flex", flexDirection: "column"}}>
+          <Header/>
+          <Box sx={{width: "90%", fontFamily: "Cormorant Garamond", color: "black", fontSize: headerFontSize, fontWeight: 400, textTransform: "uppercase", pt: 5,  display: "flex", alignItems: "center", justifyContent: 'center', alignSelf:"center", borderBottom: 5, borderColor: "#001524"}}>
+                        {t("photos")}
+          </Box>
+            <Box sx={{pt: 10, pb: 0}}>
+              <Grid container spacing={2}>
+                <Grid item xs={isSmDown ? 12 : 6} sx={{display: "flex", justifyContent: "center"}}>
+                  <Box sx={{bgcolor: "blue", width: photoWidth, height: photoHeight}}>
+
+                  </Box>
+                </Grid>
+                <Grid item xs={isSmDown ? 12 : 6} sx={{display: "flex", justifyContent: "center"}}>
+                  <Box sx={{bgcolor: "blue", width: photoWidth, height: photoHeight}}>
+                  
+                  </Box>
+                </Grid>
+              </Grid>
+            </Box>
+            <Box>
+          </Box>
+          <Box sx={{pt: 0, pb: 10, display: "flex", justifyContent: "center", minHeight: "auto"}}>
+              
+              <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description" sx={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+              <Box sx={{width: modalWidth, height: modalImageHeight, display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
+              <Button sx={{fontSize: "5rem", color: "white", '&.MuiButton-root:hover':{bgcolor: 'transparent'}}} onClick={handleBack} disableRipple>
+                <KeyboardArrowLeft fontSize="inherit"/>
+              </Button>
+              <AutoPlaySwipeableViews axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'} index={activeStep} onChangeIndex={handleStepChange} enableMouseEvents interval={3000}>
+              {itemData.map((step, index) => (
+                <div key={step.title}>
+                  {Math.abs(activeStep - index) <= 2 ? (
+                    <Box onClick={handleOpen} component="img" sx={{height: modalImageHeight, display: 'block', overflow: 'hidden', width: modalImageWidth}} src={step.img} alt={step.title}/>
+                    ) : null}
+                </div>
+              ))}
+            </AutoPlaySwipeableViews>
+            <Button sx={{fontSize: "5rem", color: "white", '&.MuiButton-root:hover':{bgcolor: 'transparent'}}} onClick={handleNext} disableRipple >
+                <KeyboardArrowRight fontSize="inherit"/>
+              </Button>
+              </Box>
+            </Modal>
+            
+          </Box>
+         
+          <Box sx={{bgcolor: "pink", display: "flex", justifyContent: "center", alignItems: "center", pt: 5, pb: 5, pl: 2, pr: 2}}>
+          <ImageList variant="masonry" cols={numCols} gap={8}>
+          {itemData.map((item) => (
+          <ImageListItem key={item.img}>
+            <img
+              srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+              src={`${item.img}?w=248&fit=crop&auto=format`}
+              alt={item.title}
+              loading="lazy"
+              onClick={handleOpen}
+            />
+          </ImageListItem>
+        ))}
+      </ImageList>
+          </Box>
+          <Footer/>
+          </Container>
         </Container>
-        <Footer/>
-        </React.Fragment>
     );
 };
 
 export default PhotosPage;
+

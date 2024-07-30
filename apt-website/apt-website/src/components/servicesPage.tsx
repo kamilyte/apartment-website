@@ -32,10 +32,14 @@ import OutdoorGrillOutlinedIcon from '@mui/icons-material/OutdoorGrillOutlined';
 import DeckOutlinedIcon from '@mui/icons-material/DeckOutlined';
 import WbSunnyOutlinedIcon from '@mui/icons-material/WbSunnyOutlined';
 import LocalParkingIcon from '@mui/icons-material/LocalParking';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 
 function ServicesPage() {
     const { t, i18n } = useTranslation();
+    const theme = useTheme();
+    const isSmDown = useMediaQuery(theme.breakpoints.down('md'));
 
     useEffect(() => {
         const storedLanguage = localStorage.getItem('language');
@@ -44,216 +48,241 @@ function ServicesPage() {
         }
     }, []);
 
+    const headerFontSize = isSmDown ? "3rem" : "4rem"
+    const featuresXs = isSmDown ? 12 : 5;
+    const featureFontSize1 = isSmDown ? "2rem" : "3rem";
+    const featureFontSize2 = isSmDown ? "1.5rem" : "2rem";
+    const features = isSmDown ? 12 : 7;
+    const iconXs = isSmDown ? 6 : 4;
+    const iconSize = isSmDown ? "medium" : "large";
+    const featuresPadding = isSmDown ? 0 : 5;
+    const leftPadding = isSmDown ? 1 : 0;
+    const feeSize1 = isSmDown ? "1rem" : "1.2rem";
+    const feeSize2 = isSmDown ? "1.5rem" : "2rem";
+    const benefitsPadding1 = isSmDown ? 0 : 0;
+    const benefitsPadding2 = isSmDown ? 7 : 2;
+    const rulesFontSize = isSmDown ? "2.5rem" : "3rem";
+    const rulesWeight = isSmDown ? 500 : 600;
+    const rulesSize = isSmDown ? "1.25rem" : "1.4rem";
+    const rulesWidth = isSmDown ? "90%" : "80%";
+
     return (
-        <React.Fragment>
-            <CssBaseline />
-            
-                <Container maxWidth={false} sx={{backgroundColor:`#DFDFDF`, height: "255vh", pr: 2}}>
+        
+            <Container disableGutters maxWidth={false} sx={{minHeight: "auto"}}>
+                <Container disableGutters maxWidth={false} sx={{width: "inherit", backgroundColor:`#DFDFDF`, minHeight: "auto", display: "flex", flexDirection: "column"}}>
                     <Header/>
-                    <Box sx={{fontFamily: "Cormorant Garamond", color: "black", fontSize: "4rem", fontWeight: 200, textTransform: "uppercase", pt: 5,  display: "flex", alignItems: "center", justifyContent: 'center', borderBottom: 5, borderColor: "#001524"}}>
+                    <Box sx={{width: "90%", fontFamily: "Cormorant Garamond", color: "black", fontSize: headerFontSize, fontWeight: 400, textTransform: "uppercase", pt: 5,  display: "flex", alignItems: "center", justifyContent: 'center', alignSelf:"center", borderBottom: 5, borderColor: "#001524"}}>
                         {t("services")}
                     </Box>
-                    <Box sx={{p: 5, width: "100vw", ml: -3}}>
-                        <Grid container spacing={2} sx={{bgcolor: "#6F1F04", pt: 2, pb: 2}}>
-                            <Grid item xs={5} sx={{display: "flex", alignItems: "center", justifyContent: 'center',}}>
-                                <Box sx={{flexDirection: "column"}}>
-                                    <Typography variant="body2" sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "3rem", fontWeight: 200, textTransform: "uppercase"}}>{t("main_features")}</Typography>
-                                    <Typography variant="body2" sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "2rem", fontWeight: 100, textTransform: "uppercase"}}>{t("top_benefits")}</Typography>
+                    <Box sx={{width: "auto", pt: 10, pb: 10, pl: featuresPadding, pr:featuresPadding}}>
+                        <Grid container spacing={2} sx={{width: "inherit", bgcolor: "#001524", p: 5}}>
+                            <Grid item xs={featuresXs} sx={{display: "flex", alignItems: "center", justifyContent: 'center'}}>
+                                <Box sx={{flexDirection: "column", pb: benefitsPadding2, pt: benefitsPadding1}}>
+                                    <Typography variant="body2" sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: featureFontSize1, fontWeight: 600, textTransform: "uppercase"}}>{t("main_features")}</Typography>
+                                    <Typography variant="body2" sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: featureFontSize2, fontWeight: 400, textTransform: "uppercase"}}>{t("top_benefits")}</Typography>
                                 </Box>
                             </Grid>
-                            <Grid item xs={7}>
-                                <Grid container spacing={2}>
-                                    <Grid item xs={4}>
-                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center'}}>
-                                            <SettingsAccessibilityIcon fontSize="large" sx={{color: "white"}}/>
-                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 100, pl: 2}}>{t("persons")}</Typography>
+                            <Grid item xs={features}>
+                                <Grid container spacing={2} sx={{pb: 1, pr: 0, pl: leftPadding}}>
+                                    <Grid item xs={iconXs}>
+                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center', size: "10px"}}>
+                                            <SettingsAccessibilityIcon fontSize={iconSize} sx={{color: "white"}}/>
+                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 400, pl: 2}}>{t("persons")}</Typography>
                                         </Box>
                                     </Grid>
-                                    <Grid item xs={4}>
-                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center'}}>
-                                            <KingBedIcon fontSize="large" sx={{color: "white"}}/>
-                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 100, pl: 2}}>{t("bedrooms")}</Typography>
+                                    <Grid item xs={iconXs}>
+                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center', size: "10px"}}>
+                                            <KingBedIcon fontSize={iconSize} sx={{color: "white"}}/>
+                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 400, pl: 2}}>{t("bedrooms")}</Typography>
                                         </Box>
                                     </Grid>
-
-                                    <Grid item xs={4}>
-                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center'}}>
-                                            <ShowerOutlinedIcon fontSize="large" sx={{color: "white"}}/>
-                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 100, pl: 2}}>{t("bathrooms")}</Typography>
+                                    <Grid item xs={iconXs}>
+                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center', size: "10px"}}>
+                                            <ShowerOutlinedIcon fontSize={iconSize} sx={{color: "white"}}/>
+                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 400, pl: 2}}>{t("bathrooms")}</Typography>
                                         </Box>
                                     </Grid>
-                                    <Grid item xs={4}>
-                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center'}}>
-                                            <WorkOutlineOutlinedIcon fontSize="large" sx={{color: "white"}}/>
-                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 100, pl: 2}}>{t("work_room")}</Typography>
+                                    <Grid item xs={iconXs}>
+                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center', size: "10px"}}>
+                                            <WorkOutlineOutlinedIcon fontSize={iconSize} sx={{color: "white"}}/>
+                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 400, pl: 2}}>{t("work_room")}</Typography>
                                         </Box>
                                     </Grid>
-
-                                    <Grid item xs={4}>
-                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center'}}>
-                                            <CountertopsOutlinedIcon fontSize="large" sx={{color: "white"}}/>
-                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 100, pl: 2}}>{t("kitchen")}</Typography>
+                                    <Grid item xs={iconXs}>
+                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center', size: "10px"}}>
+                                            <CountertopsOutlinedIcon fontSize={iconSize} sx={{color: "white"}}/>
+                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 400, pl: 2}}>{t("kitchen")}</Typography>
                                         </Box>
                                     </Grid>
-                                    <Grid item xs={4}>
-                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center'}}>
-                                            <WeekendIcon fontSize="large" sx={{color: "white"}}/>
-                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 100, pl: 2}}>{t("sitting_room")}</Typography>
+                                    <Grid item xs={iconXs}>
+                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center', size: "10px"}}>
+                                            <WeekendIcon fontSize={iconSize} sx={{color: "white"}}/>
+                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 400, pl: 2}}>{t("sitting_room")}</Typography>
                                         </Box>
                                     </Grid>
-
-                                    <Grid item xs={4}>
-                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center'}}>
-                                            <BalconyIcon fontSize="large" sx={{color: "white"}}/>
-                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 100, pl: 2}}>{t("terraces")}</Typography>
+                                    <Grid item xs={iconXs}>
+                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center', size: "10px"}}>
+                                            <BalconyIcon fontSize={iconSize} sx={{color: "white"}}/>
+                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 400, pl: 2}}>{t("terraces")}</Typography>
                                         </Box>
                                     </Grid>
-                                    <Grid item xs={4}>
-                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center'}}>
-                                            <AcUnitIcon fontSize="large" sx={{color: "white"}}/>
-                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 100, pl: 2}}>{t("air_conditioner")}</Typography>
+                                    <Grid item xs={iconXs}>
+                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center', size: "10px"}}>
+                                            <AcUnitIcon fontSize={iconSize} sx={{color: "white"}}/>
+                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 400, pl: 2}}>{t("air_conditioner")}</Typography>
                                         </Box>
                                     </Grid>
-
-                                    <Grid item xs={4}>
-                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center'}}>
-                                            <WifiIcon fontSize="large" sx={{color: "white"}}/>
-                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 100, pl: 2}}>{t("wifi")}</Typography>
+                                    <Grid item xs={iconXs}>
+                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center', size: "10px"}}>
+                                            <WifiIcon fontSize={iconSize} sx={{color: "white"}}/>
+                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 400, pl: 2}}>{t("wifi")}</Typography>
                                         </Box>
                                     </Grid>
-                                    <Grid item xs={4}>
-                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center'}}>
-                                            <ConnectedTvIcon fontSize="large" sx={{color: "white"}}/>
-                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 100, pl: 2}}>{t("tv")}</Typography>
+                                    <Grid item xs={iconXs}>
+                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center', size: "10px"}}>
+                                            <ConnectedTvIcon fontSize={iconSize} sx={{color: "white"}}/>
+                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 400, pl: 2}}>{t("tv")}</Typography>
                                         </Box>
                                     </Grid>
-
-                                    <Grid item xs={4}>
-                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center'}}>
-                                            <PetsOutlinedIcon fontSize="large" sx={{color: "white"}}/>
-                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 100, pl: 2}}>{t("animals")}</Typography>
+                                    <Grid item xs={iconXs}>
+                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center', size: "10px"}}>
+                                            <PetsOutlinedIcon fontSize={iconSize} sx={{color: "white"}}/>
+                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 400, pl: 2}}>{t("animals")}</Typography>
                                         </Box>
                                     </Grid>
-                                    <Grid item xs={4}>
-                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center'}}>
-                                            <WaterIcon fontSize="large" sx={{color: "white"}}/>
-                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 100, pl: 2}}>{t("river")}</Typography>
+                                    <Grid item xs={iconXs}>
+                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center', size: "10px"}}>
+                                            <WaterIcon fontSize={iconSize} sx={{color: "white"}}/>
+                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 400, pl: 2}}>{t("river")}</Typography>
                                         </Box>
                                     </Grid>
-
-                                    <Grid item xs={4}>
-                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center'}}>
-                                            <LocalLaundryServiceIcon fontSize="large" sx={{color: "white"}}/>
-                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 100, pl: 2}}>{t("washer")}</Typography>
+                                    <Grid item xs={iconXs}>
+                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center', size: "10px"}}>
+                                            <LocalLaundryServiceIcon fontSize={iconSize} sx={{color: "white"}}/>
+                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 400, pl: 2}}>{t("washer")}</Typography>
                                         </Box>
                                     </Grid>
-                                    <Grid item xs={4}>
-                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center'}}>
-                                            <LocalDrinkIcon fontSize="large" sx={{color: "white"}}/>
-                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 100, pl: 2}}>{t("water")}</Typography>
+                                    <Grid item xs={iconXs}>
+                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center', size: "10px"}}>
+                                            <LocalDrinkIcon fontSize={iconSize} sx={{color: "white"}}/>
+                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 400, pl: 2}}>{t("water")}</Typography>
                                         </Box>
                                     </Grid>
-
-                                    <Grid item xs={4}>
-                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center'}}>
-                                            <OutdoorGrillOutlinedIcon fontSize="large" sx={{color: "white"}}/>
-                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 100, pl: 2}}>{t("bbq")}</Typography>
+                                    <Grid item xs={iconXs}>
+                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center', size: "10px"}}>
+                                            <DeckOutlinedIcon fontSize={iconSize} sx={{color: "white"}}/>
+                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 400, pl: 2}}>{t("outdoor")}</Typography>
                                         </Box>
                                     </Grid>
-                                    <Grid item xs={4}>
-                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center'}}>
-                                            <DeckOutlinedIcon fontSize="large" sx={{color: "white"}}/>
-                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 100, pl: 2}}>{t("outdoor")}</Typography>
+                                    <Grid item xs={iconXs}>
+                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center', size: "10px"}}>
+                                            <WbSunnyOutlinedIcon fontSize={iconSize} sx={{color: "white"}}/>
+                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 400, pl: 2}}>{t("sunbeds")}</Typography>
                                         </Box>
                                     </Grid>
-                                    <Grid item xs={4}>
-                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center'}}>
-                                            <WbSunnyOutlinedIcon fontSize="large" sx={{color: "white"}}/>
-                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 100, pl: 2}}>{t("sunbeds")}</Typography>
+                                    <Grid item xs={iconXs}>
+                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center', size: "10px"}}>
+                                            <ThermostatAutoIcon fontSize={iconSize} sx={{color: "white"}}/>
+                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 400, pl: 2}}>{t("temperature")}</Typography>
                                         </Box>
                                     </Grid>
-                                    <Grid item xs={4}>
-                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center'}}>
-                                            <ThermostatAutoIcon fontSize="large" sx={{color: "white"}}/>
-                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 100, pl: 2}}>{t("temperature")}</Typography>
+                                    <Grid item xs={iconXs}>
+                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center', size: "10px"}}>
+                                            <LocalParkingIcon fontSize={iconSize} sx={{color: "white"}}/>
+                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 400, pl: 2}}>{t("parking")}</Typography>
                                         </Box>
                                     </Grid>
-                                    <Grid item xs={4}>
-                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center'}}>
-                                            <LocalParkingIcon fontSize="large" sx={{color: "white"}}/>
-                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 100, pl: 2}}>{t("parking")}</Typography>
+                                    <Grid item xs={iconXs}>
+                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center', size: "10px"}}>
+                                            <KeyIcon fontSize={iconSize} sx={{color: "white"}}/>
+                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 400, pl: 2}}>{t("check_in")}</Typography>
                                         </Box>
                                     </Grid>
-                                    <Grid item xs={6}>
-                                        <Box sx={{display: 'flex', justifyContent: "flex-start", alignContent: 'center'}}>
-                                            <KeyIcon fontSize="large" sx={{color: "white"}}/>
-                                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 100, pl: 2}}>{t("check_in")}</Typography>
-                                        </Box>
-                                    </Grid>
-                                    
-                                    
-
                                 </Grid>
                             </Grid>
                         </Grid>
                     </Box>
-                    <Box sx={{bgcolor: "#001524", width: "100vw", ml: -3, p: 4, display: 'flex', justifyContent: 'space-evenly',}}>
-                        <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 100, textTransform: "uppercase"}}>{t("rental_price")}</Typography>
-                        <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "1.2rem", fontWeight: 100, textTransform: "uppercase"}}>{t("cleaning_fee")}</Typography>
+                    <Box sx={{bgcolor: "#001524", minHeight: "auto", width: "auto", p: 5}}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={isSmDown ? 12 : 6} sx={{display: "flex", flexDirection: "row", justifyContent: "center"}}>
+                                <Typography align="center" sx={{alignSelf: "center"}}>
+                                <Typography component="span" sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: feeSize1, fontWeight: 100, textTransform: "uppercase"}}>
+                                    {t("rental_price")}&nbsp;
+                                </Typography>
+                                <Typography  component="span" sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: feeSize2, fontWeight: 600, textTransform: "uppercase", transform: 'translateY(-12px)'}}>
+                                    {t("rental_price_num")}&nbsp;
+                                </Typography>
+                                <Typography component="span" sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: feeSize1, fontWeight: 100, textTransform: "uppercase"}}>
+                                    {t("rental_price_night")}
+                                </Typography>
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={isSmDown ? 12 : 6} sx={{display: "flex", flexDirection: "row", justifyContent: "center"}}>
+                                <Typography>
+                                <Typography component="span" sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: feeSize1, fontWeight: 100, textTransform: "uppercase"}}>
+                                    {t("cleaning_fee")}&nbsp;
+                                </Typography>
+                                <Typography  component="span" sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: feeSize2, fontWeight: 600, textTransform: "uppercase", transform: 'translateY(-12px)'}}>
+                                    {t("cleaning_fee_price")}
+                                </Typography>
+                                </Typography>
+                            </Grid>
+                        </Grid>
                     </Box>
 
-                    <Box sx={{pt: 8, pl: 20, width: "100%"}}>
-                        <Stack spacing={0} sx={{width: "80%"}}>
+                    <Box sx={{ minHeight: "auto", width: "auto", pt: 8, display: "flex", justifyContent: "center", pb: 10}}>
+                        <Stack sx={{width: rulesWidth}}>
                             <Box sx={{pb: 2}}>
-                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "#15616D", fontSize: "3rem", fontWeight: 600, textTransform: "uppercase"}}>{t("rules")}</Typography>
+                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "#15616D", fontSize: rulesFontSize, fontWeight: 600, textTransform: "uppercase"}}>{t("rules")}</Typography>
                             </Box>
                             <Box sx={{pt: 1, pb: 1, borderTop: 1, borderBottom: 1, borderColor: "#15616D"}}>
                                 <Typography sx={{fontFamily: "Cormorant Garamond", color: "#15616D", fontSize: "1.5rem", fontWeight: 500, textTransform: "uppercase"}}>{t("checkin_1")}</Typography>
-                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "black", fontSize: "1.4rem", fontWeight: 600, fontStyle: "normal"}}>{t("checkin_2")}</Typography>
+                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "black", fontSize: rulesSize, fontWeight: rulesWeight, fontStyle: "normal"}}>{t("checkin_2")}</Typography>
                             </Box>
                             <Box sx={{pt: 1, pb: 1, borderBottom: 1, borderColor: "#15616D"}}>
                                 <Typography sx={{fontFamily: "Cormorant Garamond", color: "#15616D", fontSize: "1.5rem", fontWeight: 500, textTransform: "uppercase"}}>{t("checkout_1")}</Typography>
-                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "black", fontSize: "1.4rem", fontWeight: 600}}>{t("checkout_2")}</Typography>
+                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "black", fontSize: rulesSize, fontWeight: rulesWeight}}>{t("checkout_2")}</Typography>
                             </Box>
                             <Box sx={{pt: 1, pb: 1, borderBottom: 1, borderColor: "#15616D"}}>
                                 <Typography sx={{fontFamily: "Cormorant Garamond", color: "#15616D", fontSize: "1.5rem", fontWeight: 500, textTransform: "uppercase"}}>{t("rent_1")}</Typography>
-                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "black", fontSize: "1.4rem", fontWeight: 600}}>{t("rent_2")}</Typography>
+                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "black", fontSize: rulesSize, fontWeight: rulesWeight}}>{t("rent_2")}</Typography>
                             </Box>
                             <Box sx={{pt: 1, pb: 1, borderBottom: 1, borderColor: "#15616D"}}>
                                 <Typography sx={{fontFamily: "Cormorant Garamond", color: "#15616D", fontSize: "1.5rem", fontWeight: 500, textTransform: "uppercase"}}>{t("quiet_hours_1")}</Typography>
-                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "black", fontSize: "1.4rem", fontWeight: 600}}>{t("quiet_hours_2")}</Typography>
+                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "black", fontSize: rulesSize, fontWeight: rulesWeight}}>{t("quiet_hours_2")}</Typography>
                             </Box>
                             <Box sx={{pt: 1, pb: 1, borderBottom: 1, borderColor: "#15616D"}}>
                                 <Typography sx={{fontFamily: "Cormorant Garamond", color: "#15616D", fontSize: "1.5rem", fontWeight: 500, textTransform: "uppercase"}}>{t("pets_1")}</Typography>
-                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "black", fontSize: "1.4rem", fontWeight: 600}}>{t("pets_2")}</Typography>
+                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "black", fontSize: rulesSize, fontWeight: rulesWeight}}>{t("pets_2")}</Typography>
                             </Box>
                             <Box sx={{pt: 1, pb: 1, borderBottom: 1, borderColor: "#15616D"}}>
                                 <Typography sx={{fontFamily: "Cormorant Garamond", color: "#15616D", fontSize: "1.5rem", fontWeight: 500, textTransform: "uppercase"}}>{t("smoking_1")}</Typography>
-                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "black", fontSize: "1.4rem", fontWeight: 600}}>{t("smoking_2")}</Typography>
+                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "black", fontSize: rulesSize, fontWeight: rulesWeight}}>{t("smoking_2")}</Typography>
                             </Box>
                             <Box sx={{pt: 1, pb: 1, borderBottom: 1, borderColor: "#15616D"}}>
                                 <Typography sx={{fontFamily: "Cormorant Garamond", color: "#15616D", fontSize: "1.5rem", fontWeight: 500, textTransform: "uppercase"}}>{t("parties_1")}</Typography>
-                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "black", fontSize: "1.4rem", fontWeight: 600}}>{t("parties_2")}</Typography>
+                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "black", fontSize: rulesSize, fontWeight: rulesWeight}}>{t("parties_2")}</Typography>
                             </Box>
                             <Box sx={{pt: 1, pb: 1, borderBottom: 1, borderColor: "#15616D"}}>
                                 <Typography sx={{fontFamily: "Cormorant Garamond", color: "#15616D", fontSize: "1.5rem", fontWeight: 500, textTransform: "uppercase"}}>{t("guests_1")}</Typography>
-                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "black", fontSize: "1.4rem", fontWeight: 600}}>{t("guests_2")}</Typography>
-                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "black", fontSize: "1.4rem", fontWeight: 600}}>{t("guests_3")}</Typography>
+                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "black", fontSize: rulesSize, fontWeight: rulesWeight}}>{t("guests_2")}</Typography>
+                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "black", fontSize: rulesSize, fontWeight: rulesWeight}}>{t("guests_3")}</Typography>
                             </Box>
                             <Box sx={{pt: 1, pb: 1, borderBottom: 1, borderColor: "#15616D"}}>
                                 <Typography sx={{fontFamily: "Cormorant Garamond", color: "#15616D", fontSize: "1.5rem", fontWeight: 500, textTransform: "uppercase"}}>{t("deposit_1")}</Typography>
-                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "black", fontSize: "1.4rem", fontWeight: 600}}>{t("deposit_2")}</Typography>
+                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "black", fontSize: rulesSize, fontWeight: rulesWeight}}>{t("deposit_2")}</Typography>
                             </Box>
                             <Box sx={{pt: 1, pb: 1, borderBottom: 1, borderColor: "#15616D"}}>
                                 <Typography sx={{fontFamily: "Cormorant Garamond", color: "#15616D", fontSize: "1.5rem", fontWeight: 500, textTransform: "uppercase"}}>{t("fine_1")}</Typography>
-                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "black", fontSize: "1.4rem", fontWeight: 600}}>{t("fine_2")}</Typography>
+                                <Typography sx={{fontFamily: "Cormorant Garamond", color: "black", fontSize: rulesSize, fontWeight: rulesWeight}}>{t("fine_2")}</Typography>
                             </Box>
+                            
                         </Stack>
                     </Box>
                     
                 </Container>
                 <Footer/>
-        </React.Fragment>
+            </Container>
     );
     
    
