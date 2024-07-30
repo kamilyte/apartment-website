@@ -38,6 +38,30 @@ import Paper from '@mui/material/Paper';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 
+import pic1 from '../pictures/1.jpg';
+import pic2 from "../pictures/2.jpg";
+import pic3 from "../pictures/3.jpg";
+import pic4 from '../pictures/4.jpg';
+import pic5 from "../pictures/5.jpg";
+import pic6 from "../pictures/6.jpg";
+import pic7 from '../pictures/7.jpg';
+import pic8 from "../pictures/8.jpg";
+import pic9 from "../pictures/9.jpg";
+import pic10 from '../pictures/10.jpg';
+import pic11 from "../pictures/11.jpg";
+import pic12 from "../pictures/12.jpg";
+import pic13 from '../pictures/13.jpg';
+import pic14 from "../pictures/14.jpg";
+import pic15 from "../pictures/15.jpg";
+import pic16 from '../pictures/16.jpg';
+import pic17 from "../pictures/17.jpg";
+import pic18 from "../pictures/18.jpg";
+import pic19 from '../pictures/19.jpg';
+import pic20 from "../pictures/20.jpg";
+import pic21 from "../pictures/21.jpg";
+import pic22 from '../pictures/22.jpg';
+import pic23 from "../pictures/23.jpg";
+
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const images = [
@@ -114,6 +138,8 @@ const images = [
     },
   ];
 
+const pictures = {pic1, pic2, pic3, pic4, pic5, pic6, pic7, pic8, pic9, pic10, pic11, pic12, pic13, pic14, pic15, pic16, pic17, pic18, pic19, pic20, pic21, pic22, pic23};
+
 
 const PictureBox = styled(Box)(({ theme }) => ({
     background: "blue", 
@@ -144,7 +170,7 @@ function PhotosPage() {
     const [slideDirection, setSlideDirection] = useState('translateX(0)');
     const [inTransition, setInTransition] = useState(false);
     const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = images.length;
+    const maxSteps = 23;
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => (prevActiveStep + 1) % (maxSteps));
@@ -171,7 +197,6 @@ function PhotosPage() {
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
-    console.log("works")
     setOpen(true)
   };
   const handleClose = () => setOpen(false);
@@ -229,16 +254,16 @@ function PhotosPage() {
           </Box>
           <Box sx={{pt: 0, pb: 10, display: "flex", justifyContent: "center", minHeight: "auto"}}>
               
-              <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description" sx={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+              <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description" sx={{display: "flex", justifyContent: "center", alignItems: "center", '& .MuiBackdrop-root': { backgroundColor: 'rgba(0, 0, 0, 0.8)' }}}>
               <Box sx={{width: modalWidth, height: modalImageHeight, display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
               <Button sx={{fontSize: "5rem", color: "white", '&.MuiButton-root:hover':{bgcolor: 'transparent'}}} onClick={handleBack} disableRipple>
                 <KeyboardArrowLeft fontSize="inherit"/>
               </Button>
               <AutoPlaySwipeableViews axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'} index={activeStep} onChangeIndex={handleStepChange} enableMouseEvents interval={3000}>
-              {itemData.map((step, index) => (
-                <div key={step.title}>
+              {Object.values(pictures).map((step, index) => (
+                <div key={index}>
                   {Math.abs(activeStep - index) <= 2 ? (
-                    <Box onClick={handleOpen} component="img" sx={{height: modalImageHeight, display: 'block', overflow: 'hidden', width: modalImageWidth}} src={step.img} alt={step.title}/>
+                    <Box onClick={handleOpen} component="img" sx={{height: modalImageHeight, display: 'block', overflow: 'hidden', width: modalImageWidth, objectFit: "contain"}} src={step} />
                     ) : null}
                 </div>
               ))}
@@ -251,14 +276,12 @@ function PhotosPage() {
             
           </Box>
          
-          <Box sx={{bgcolor: "pink", display: "flex", justifyContent: "center", alignItems: "center", pt: 5, pb: 5, pl: 2, pr: 2}}>
+          <Box sx={{display: "flex", justifyContent: "center", alignItems: "center", pt: 5, pb: 5, pl: 2, pr: 2}}>
           <ImageList variant="masonry" cols={numCols} gap={8}>
-          {itemData.map((item) => (
-          <ImageListItem key={item.img}>
+          {Object.values(pictures).map((url, index) => (
+          <ImageListItem key={index}>
             <img
-              srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-              src={`${item.img}?w=248&fit=crop&auto=format`}
-              alt={item.title}
+              src={url}
               loading="lazy"
               onClick={handleOpen}
             />

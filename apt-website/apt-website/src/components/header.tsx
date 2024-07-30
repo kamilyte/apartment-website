@@ -68,7 +68,7 @@ const StyledBox = styled(Box)(({ theme }) => ({
 }));
 
 const StyledIconButton = styled(IconButton)(({ theme }) => ({
-    color: "white",
+    color: "#001524",
     fontSize: "50px",
     [theme.breakpoints.down("md")]: {
         fontSize: "30px",
@@ -76,7 +76,7 @@ const StyledIconButton = styled(IconButton)(({ theme }) => ({
 }));
 
 const StyledButton = styled(Button)(({ theme }) => ({
-    color: "white",
+    color: "#001524",
     fontFamily: "Cormorant Garamond",
     minWidth: "auto",
     fontWeight: 600,
@@ -233,9 +233,9 @@ function Header() {
                                 sx={{bgcolor: "transparent", 
                                     textAlign: "right",
                                     fontFamily: "Cormorant Garamond", 
-                                    color: "white",
-                                    ':before': { borderBottomColor: 'white' },
-                                    ':after': { borderBottomColor: 'white' },
+                                    color: "#001524",
+                                    ':before': { borderBottomColor: '#001524' },
+                                    ':after': { borderBottomColor: '#001524' },
                                     fontWeight: 600,
                                     fontSize: "1.3rem"
                                 }}>

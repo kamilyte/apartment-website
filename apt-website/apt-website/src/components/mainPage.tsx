@@ -7,8 +7,13 @@ import Header from './header';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
-import pic1 from "../images/pic1.jpeg";
-import pic2 from "../images/pic2.jpeg";
+import pic01 from "../images/pic1.jpeg";
+import pic02 from "../images/pic2.jpeg";
+
+import pic1 from '../pictures/1.jpg';
+import pic2 from "../pictures/18.jpg";
+import pic3 from "../pictures/22.jpg";
+
 import Grow from '@mui/material/Grow';
 import Fade from '@mui/material/Fade';
 import Stack from '@mui/material/Stack';
@@ -96,6 +101,7 @@ const TypographyText = styled(Typography)(({ theme }) => ({
 
 const PictureBox = styled(Box)(({ theme }) => ({
     background: "blue", 
+    objectFit: "cover",
     height: "600px", 
     width: "500px",
     [theme.breakpoints.down("md")]: {
@@ -111,7 +117,7 @@ function MainPage() {
     const [background, setBackground] = React.useState(`url(${pic1})`);
     const [backgroundText_1, setBackgroundText_1] = React.useState(t("welcome_line1").toUpperCase());
     const [backgroundText_2, setBackgroundText_2] = React.useState(t("welcome_line2").toUpperCase());
-    const imageURLs = [`url(${pic1})`, `url(${pic2})`, `url(${pic2})`];
+    const imageURLs = [`url(${pic2})`, `url(${pic1})`, `url(${pic3})`];
     const imageTexts1 = [t("welcome_line1").toUpperCase(), "", ""];
     const imageTexts2 = [t("welcome_line2").toUpperCase(), t("welcome_page2").toUpperCase(), t("welcome_page3").toUpperCase()];
     const imageIdxRef = useRef<number>(0);
@@ -146,16 +152,16 @@ function MainPage() {
     return (
         <Container disableGutters maxWidth={false} sx={{minHeight: "auto"}}>
         <Wrapper disableGutters maxWidth={false} sx={{backgroundColor:`transparent`, backgroundImage: background, transition: "background-image 1s ease", backgroundSize: "cover"}}>
-            <Container disableGutters maxWidth={false} sx={{width: "inherit", height: "100%", backgroundColor: "rgba(0, 0, 0, 0.55)", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+            <Container disableGutters maxWidth={false} sx={{width: "inherit", height: "100%", backgroundColor: "rgba(255, 255, 255, 0.5)", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
                 <Header/> 
                 <Grid container sx={{alignItems: "flex-end", flexGrow: 1}}>
                     <Grid item xs={6} sx={{p: mainPadding}}>
                     <Fade in={checked} timeout={{enter: 500, exit: 500}}>
                         <MainTextBox>
-                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "calc(2 * 1em)", fontWeight: 100}}>
+                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "#001524", fontSize: "calc(2 * 1em)", fontWeight: 600}}>
                                 {imageTexts1[imageIdxRef.current]}
                             </Typography>
-                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "white", fontSize: "inherit", fontWeight: 300, transition: "opacity 1s ease-in-out"}}>
+                            <Typography sx={{fontFamily: "Cormorant Garamond", color: "#001524", fontSize: "inherit", fontWeight: 600, transition: "opacity 1s ease-in-out"}}>
                                 {imageTexts2[imageIdxRef.current]}
                             </Typography>
                         </MainTextBox>  
@@ -213,7 +219,15 @@ function MainPage() {
                         ) : undefined
                     }
                     <Grid item xs={isSmDown ? 12 : 6} sx={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-                        <PictureBox/>
+                        <PictureBox>
+                        <img
+                            width="100%"
+                            height="100%"
+                            src={pic3}
+                            loading="lazy"
+                            style={{ objectFit: 'cover' }}
+                        />
+                        </PictureBox>
                     </Grid>
                     <Grid item xs={12}>
                         <Box sx={{width: "100vw", height: "100px"}}/>
