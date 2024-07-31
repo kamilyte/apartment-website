@@ -240,12 +240,24 @@ function PhotosPage() {
               <Grid container spacing={2}>
                 <Grid item xs={isSmDown ? 12 : 6} sx={{display: "flex", justifyContent: "center"}}>
                   <Box sx={{bgcolor: "blue", width: photoWidth, height: photoHeight}}>
-
+                      <img
+                            width="100%"
+                            height="100%"
+                            src={pic20}
+                            loading="lazy"
+                            style={{ objectFit: 'cover' }}
+                        />
                   </Box>
                 </Grid>
                 <Grid item xs={isSmDown ? 12 : 6} sx={{display: "flex", justifyContent: "center"}}>
                   <Box sx={{bgcolor: "blue", width: photoWidth, height: photoHeight}}>
-                  
+                  <img
+                            width="100%"
+                            height="100%"
+                            src={pic23}
+                            loading="lazy"
+                            style={{ objectFit: 'cover' }}
+                        />
                   </Box>
                 </Grid>
               </Grid>
